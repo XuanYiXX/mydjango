@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}<link href="{% static 'css/picture_list.css' %}" rel="stylesheet"/>{% endblock %}
+{% block content %}
+<div class="container">
+        <div class="col-md-4 col-md-offset-4">
+              <div class="form-group">
+                  <h1>测试历史记录</h1>
+                      {% if latest_picture_list %}
+                      {% for picture in latest_picture_list %}
+                  <li><a href="{% url 'pic_upload:pic_detail' picture.id %}">{{ picture.title }}</a>
+                    -{{ picture.date|date:"Y-m-j" }}</li>
+                      {% endfor %}
+                     {% else %}
+                      <li>还没有上传新图片</li>
+                          {% endif %}
+                  <p><a href="{% url 'pic_upload:pic_upload' %}">重新测试</a></p>
+              </div>
+        </div>
+    </div> <!-- /container -->
+{% endblock %}

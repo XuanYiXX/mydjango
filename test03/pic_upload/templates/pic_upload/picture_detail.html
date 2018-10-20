@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}<link href="{% static 'css/picture_upload.css' %}" rel="stylesheet"/>{% endblock %}
+<html>
+
+{% block content %}
+        <div class="col-md-4 col-md-offset-4">
+              <div class="form-group">
+               <h2>{{ picture.title }}</h2>
+                   {% if picture.image %}
+                  <p><img src="{{ picture.image.url }}"/></p>
+                   {% endif %}
+               <p>上传日期：{{ picture.date|date:"Y-m-j" }}</p>
+               <p><a href="{% url 'pic_upload:pic_list' %}">查看测试记录</a>|
+               <a href="{% url 'pic_upload:pic_upload'%}">重新选择图片</a>|
+               <form action="/pic_upload" method="post">
+                 {% csrf_token %}
+               <input type="submit" value="开始测试">
+                    <h3><a >舰船分类结果</a></h3>
+               <h4>本机是点击‘开始测试’，这里会出现结果，但由于我申请的新手免费的服务器配置不足
+                   不能带动caffe等原因，这里并不能调用caffe的处理程序，有关caffe这个问题的解决方案
+                   见文档介绍</h4>
+               </form>
+              </div>
+        </div>
+{% endblock %}
+</html>

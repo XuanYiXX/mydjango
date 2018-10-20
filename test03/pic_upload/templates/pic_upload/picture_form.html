@@ -1,0 +1,16 @@
+
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}<link href="{% static 'css/picture_upload.css' %}" rel="stylesheet"/>{% endblock %}
+{% block content %}
+<div class="container">
+        <div class="col-md-4 col-md-offset-4">
+              <h2 class="text-center">仅限一张</h2>
+              <div class="form-group">
+                 <form method="post"enctype="multipart/form-data">{% csrf_token %}
+                  {{ form.as_p }}
+                <input type="submit"value="确定"/></form>
+              </div>
+        </div>
+    </div> <!-- /container -->
+{% endblock %}
